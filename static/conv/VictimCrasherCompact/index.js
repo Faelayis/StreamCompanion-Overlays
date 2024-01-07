@@ -58,13 +58,13 @@ socket.onmessage = event => {
    }
    if (gameState !== data.menu.state) {
       gameState = data.menu.state;
-      if (!gameState) {
+      if (!gameState || [1,7,11].includes(gameState)) {
          mainContainer.style.opacity = "0";
       } else {
          mainContainer.style.opacity = "1";
       }
-      if (gameState === 2 || gameState === 7 || gameState === 14) {
-         // Gameplay, Results Screen, Multiplayer Results Screen
+      if ([2,12].includes(gameState)) {
+         // Gameplay, Multiplayer
          maskTitleDiff.style.transform = "translateY(0)";
          mapStatus.style.transform = "translateY(0)";
          mapRank.style.transform = "translateY(0)";
