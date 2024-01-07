@@ -84,7 +84,7 @@ socket.onmessage = event => {
          ppCont.style.transform = "translateY(0)";
          rank.style.transform = "translateY(0)";
          hits.style.transform = "translateY(0)";
-      } else if ([5, 12, 13, 11].includes(gameState)) {
+      } else if ([5, 12, 13, 11, 14].includes(gameState)) {
          maskTitleDiff.style.transform = "translateY(0px)";
          mapStatus.style.transform = "translateY(20px)";
          ppCont.style.transform = "translateY(0px)";
