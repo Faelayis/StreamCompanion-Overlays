@@ -1,6 +1,7 @@
 let socket = CreateProxiedReconnectingWebSocket("ws://" + location.host + "/ws");
 let mapid = document.getElementById('mapid');
 
+let mainContainer = document.getElementById("main");
 let bg = document.getElementById("bg");
 let title = document.getElementById("title");
 let diff = document.getElementById("diff");
@@ -13,7 +14,8 @@ let pp = document.getElementById("pp");
 let hun = document.getElementById("h100");
 let fifty = document.getElementById("h50");
 let miss = document.getElementById("h0");
-let mapStatus = document.getElementById("mapStatus");
+let mapStatus = document.getElementById("mapStatus")
+let mapRank = document.getElementById('mapRank');;
 let maskTitleDiff = document.getElementById("maskTitleDiff");
 let ppCont = document.getElementById("ppCont");
 let params = {
@@ -56,10 +58,16 @@ socket.onmessage = event => {
    }
    if (gameState !== data.menu.state) {
       gameState = data.menu.state;
+      if (!gameState) {
+         mainContainer.style.opacity = "0";
+      } else {
+         mainContainer.style.opacity = "1";
+      }
       if (gameState === 2 || gameState === 7 || gameState === 14) {
          // Gameplay, Results Screen, Multiplayer Results Screen
          maskTitleDiff.style.transform = "translateY(0)";
          mapStatus.style.transform = "translateY(0)";
+         mapRank.style.transform = "translateY(0)";
          ppCont.style.transform = "translateY(0)";
          rank.style.transform = "translateY(0)";
          hits.style.transform = "translateY(0)";
@@ -122,7 +130,19 @@ socket.onmessage = event => {
       tempHp = data.menu.bm.stats.HP;
       hp.innerHTML = `${Math.round(tempHp * 10) / 10}`;
    }
-
+   if (data.menu.bm.rankedStatus === 7) {
+      params.mapRank = "";
+      mapRank.style.color = "#ff81c5";
+   } else if (data.menu.bm.rankedStatus === 4) {
+      params.mapRank = "";
+      mapRank.style.color = "#80e6ff";
+   } else if (data.menu.bm.rankedStatus === 5) {
+      params.mapRank = "";
+      mapRank.style.color = "#c0e71b";
+   } else {
+      params.mapRank = "";
+      mapRank.style.color = "#929292";
+   }
    if (data.gameplay.hits.grade.current === "") {
       params.rank = 'SS'
    } else {
@@ -160,5 +180,12 @@ socket.onmessage = event => {
       rank.classList.remove('click');
       reflow(rank);
       rank.classList.add('click')
+   }
+
+   if (mapRank.innerHTML != params.mapRank) {
+      mapRank.innerHTML = params.mapRank;
+      mapRank.classList.remove('click');
+      reflow(mapRank);
+      mapRank.classList.add('click')
    }
 }
