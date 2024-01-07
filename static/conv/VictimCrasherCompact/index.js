@@ -18,6 +18,7 @@ let mapStatus = document.getElementById("mapStatus")
 let mapRank = document.getElementById('mapRank');;
 let maskTitleDiff = document.getElementById("maskTitleDiff");
 let ppCont = document.getElementById("ppCont");
+let ppAbbreviate = document.getElementById("ppAbbreviate");
 let params = {
    rank: '',
    mapRank: ''
@@ -25,6 +26,18 @@ let params = {
 
 function reflow(elt) {
    elt.offsetHeight;
+}
+
+function abbreviateNumber(number) {
+   const SI_SYMBOL = ["", "K", "M", "G", "T", "P", "E"];
+   const tier = Math.log10(Math.abs(number)) / 3 | 0;
+   if (tier === 0) return [number, ""];
+
+   const suffix = SI_SYMBOL[tier];
+   const scale = Math.pow(10, tier * 3);
+   const scaledNumber = number / scale;
+   const formattedNumber = scaledNumber.toFixed(1);
+   return [formattedNumber, suffix];
 }
 
 socket.onopen = () => {
@@ -58,12 +71,12 @@ socket.onmessage = event => {
    }
    if (gameState !== data.menu.state) {
       gameState = data.menu.state;
-      if (!gameState || [1,7,11].includes(gameState)) {
+      if (!gameState || [1, 7, 11].includes(gameState)) {
          mainContainer.style.opacity = "0";
       } else {
          mainContainer.style.opacity = "1";
       }
-      if ([2,12].includes(gameState)) {
+      if (gameState === 2) {
          // Gameplay, Multiplayer
          maskTitleDiff.style.transform = "translateY(0)";
          mapStatus.style.transform = "translateY(0)";
@@ -71,6 +84,12 @@ socket.onmessage = event => {
          ppCont.style.transform = "translateY(0)";
          rank.style.transform = "translateY(0)";
          hits.style.transform = "translateY(0)";
+      } else if ([5, 12, 13, 11].includes(gameState)) {
+         maskTitleDiff.style.transform = "translateY(0px)";
+         mapStatus.style.transform = "translateY(20px)";
+         ppCont.style.transform = "translateY(0px)";
+         rank.style.transform = "translateY(100px)";
+         hits.style.transform = "translateY(100px)";
       } else {
          maskTitleDiff.style.transform = "translateY(20px)";
          mapStatus.style.transform = "translateY(20px)";
@@ -80,10 +99,18 @@ socket.onmessage = event => {
       }
    }
    if (data.gameplay.pp.current != '') {
-      let ppData = data.gameplay.pp.current;
-      pp.innerHTML = Math.round(ppData);
+      let ppData = data.gameplay.hits.grade.current ? data.gameplay.pp.current : data.menu.pp["100"];
+      let ppDataLength = abbreviateNumber(Math.round(ppData));
+      pp.innerHTML = ppDataLength[0];
+      ppAbbreviate.innerHTML = ppDataLength[1];
+   } else if (data.menu.pp["100"]) {
+      let ppData = data.menu.pp["100"];
+      let ppDataLength = abbreviateNumber(Math.round(ppData));
+      pp.innerHTML = ppDataLength[0];
+      ppAbbreviate.innerHTML = ppDataLength[1];
    } else {
       pp.innerHTML = "";
+      ppAbbreviate.innerHTML = "";
    }
    if (data.gameplay.hits[100] > 0) {
       hun.innerHTML = data.gameplay.hits[100];
