@@ -3,6 +3,6 @@
 
 ### [static/conv/VictimCrasherCompact](./static/conv/VictimCrasherCompact/)
 
-| Choose Songs, Multiplayer | Gameplay |
+| Choose Songs, Multiplayer Lobby | Gameplay |
 | :---: | :---: |
-| ![](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/5c61d838-f8eb-43a5-83b0-962031cfd249) | ![](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/eec2facc-b04a-490b-b39e-44d0a2fb30a2) |
+| ![localhost_20727_overlays_Faelayis_static_conv_VictimCrasherCompact_](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/e47a5e8c-7ac9-4d28-89eb-249cdd24230f) | ![localhost_20727_overlays_Faelayis_static_conv_VictimCrasherCompact_ (1)](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/9d5ceb46-bb10-48b4-97e2-a488f7b70b65) |
