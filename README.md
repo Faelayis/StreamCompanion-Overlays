@@ -5,4 +5,4 @@
 
 | Choose Songs, Multiplayer Lobby | Gameplay |
 | :---: | :---: |
-| ![localhost_20727_overlays_Faelayis_static_conv_VictimCrasherCompact_](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/e47a5e8c-7ac9-4d28-89eb-249cdd24230f) | ![localhost_20727_overlays_Faelayis_static_conv_VictimCrasherCompact_ (1)](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/9d5ceb46-bb10-48b4-97e2-a488f7b70b65) |
+| ![](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/e47a5e8c-7ac9-4d28-89eb-249cdd24230f) | ![](https://github.com/Faelayis/StreamCompanion-Overlays/assets/48393914/48b5d02f-25f6-4efb-8fec-6c4dd7a6ddd9) |
