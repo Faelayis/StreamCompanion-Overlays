@@ -158,13 +158,13 @@ html {
 	border-radius: 5px;
 }
 .h100 hr {
-	background-color: #51a347;
+	background-color: greenyellow;
 }
 .h50 hr {
-	background-color: #8b61ff;
+	background-color: yellow;
 }
 .h0 hr {
-	background-color: #ff5c5c;
+	background-color: red;
 }
 #csCont {
 	background-color: #9c9236;
