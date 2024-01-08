@@ -1,194 +1,204 @@
 @font-face {
-    font-family: "QTVagaRound-Bold";
-    src: url("../fonts/QTVagaRound-Bold.otf");
+	font-family: "QTVagaRound-Bold";
+	src: url("../fonts/QTVagaRound-Bold.otf");
 }
-:root{
-   --SHD: #E4E4E4;
-   --S: #FFFB8B;
-   --A: #9DF9AA;
-   --B: #9DACF9;
-   --C: #ED9DF9;
-   --D: #F99D9D;
+:root {
+	--SHD: #e4e4e4;
+	--S: #fffb8b;
+	--A: #9df9aa;
+	--B: #9dacf9;
+	--C: #ed9df9;
+	--D: #f99d9d;
 }
-body,html{
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+body,
+html {
+	opacity: 0;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
 }
-#main{
-    font-size: 20px;
-    font-family: QTVagaRound-Bold, Helvetica, sans-serif;
-    font-weight: normal;
-    color: white;
-    height: 132px;
-    width: 550px;
-    position: relative;
+#main {
+	font-size: 20px;
+	font-family: QTVagaRound-Bold, Helvetica, sans-serif;
+	font-weight: normal;
+	height: 132px;
+	color: white;
+	width: 550px;
+	position: relative;
 }
-.odometer.odometer-auto-theme{
-    font-size: 20px !important;;
-    font-family: "QTVagaRound-Bold", Helvetica, sans-serif !important;
-    font-weight: normal !important;
+.odometer.odometer-auto-theme {
+	font-size: 20px !important;
+	font-family: "QTVagaRound-Bold", Helvetica, sans-serif !important;
+	font-weight: normal !important;
 }
 
-#target{
-    position: relative;
-    height: 132px;
-    width: 550px;
-    -webkit-mask-image: url(../static/mask.svg);
-    mask-image: url(../static/mask.svg);
+#target {
+	position: relative;
+	height: 132px;
+	width: 550px;
+	-webkit-mask-image: url(../static/mask.svg);
+	mask-image: url(../static/mask.svg);
 }
-#bg{
-    background-color: rgb(71, 83, 109);
-    position: absolute;
-    height: 132px;
-    width: 550px;
-    object-fit: cover;
-    z-index: -1;
+#bg {
+	background-color: rgb(71, 83, 109);
+	position: absolute;
+	height: 132px;
+	width: 550px;
+	object-fit: cover;
+	z-index: -1;
 }
-#bgDark{
-    position: absolute;
-    height: 132px;
-    width: 550px;
-    background-color: rgba(0, 0, 0, 0.65);
+#bgDark {
+	position: absolute;
+	height: 132px;
+	width: 550px;
+	background-color: rgba(0, 0, 0, 0.65);
 }
-#title{
-    font-size: 24px;
-    font-weight: bold;
-    position: absolute;
-    top: 15px;
-    width: max-content;
-    max-height: 30px;
-    overflow:hidden;
+#title {
+	font-size: 24px;
+	font-weight: bold;
+	position: absolute;
+	top: 15px;
+	width: max-content;
+	max-height: 30px;
+	overflow: hidden;
 }
-#diff{
-    font-size: 24px;
-    position: absolute;
-    top: 40px;
-    width: max-content;
-    max-height: 30px;
-    overflow:hidden;	
+#diff {
+	font-size: 24px;
+	position: absolute;
+	top: 40px;
+	width: max-content;
+	max-height: 30px;
+	overflow: hidden;
 }
-#mapRank{
-   position: absolute;
-   width: max-content;
-   overflow:hidden;	
+#mapRank {
+	position: absolute;
+	width: max-content;
+	overflow: hidden;
 }
-#ppCont{
-    font-size: 50px;
-    position: absolute;
-    bottom: 5px;
+#ppCont {
+	font-size: 50px;
+	position: absolute;
+	bottom: 5px;
 	left: 15px;
-    width: max-content;
-    max-height: 75px;
-    overflow:hidden;	
-    transition: ease-in-out 500ms;
+	width: max-content;
+	max-height: 75px;
+	overflow: hidden;
+	transition: ease-in-out 500ms;
 }
-#pp{
-   top: 0px;
+#pp {
+	top: 0px;
 	font-size: 50px !important;
 }
-#ppAbbreviate{
+#ppAbbreviate {
 	font-size: 30px !important;
 }
-#maskTitleDiff{
-    position: absolute;
-    top: 0px;
+#maskTitleDiff {
+	position: absolute;
+	top: 0px;
 	left: 15px;
-    width: 300px;
+	width: 300px;
 	height: 100%;
-    overflow: hidden;
-    transition: ease-in-out 500ms;
+	overflow: hidden;
+	transition: ease-in-out 500ms;
 }
-.over{ 
-    transform: translate(300px);
-    animation: slide 5s linear infinite;
+.over {
+	transform: translate(300px);
+	animation: slide 6s linear infinite;
 }
 @keyframes slide {
-    0% {transform: translate(0px);}
-	10% {transform: translate(0px);}
-    90% { transform: translate(calc(-100% + 300px)); }
-    100% { transform: translate(calc(-100% + 300px)); }
+	0% {
+		transform: translate(0px);
+	}
+	10% {
+		transform: translate(0px);
+	}
+	90% {
+		transform: translate(calc(-100% + 300px));
+	}
+	100% {
+		transform: translate(calc(-100% + 300px));
+	}
 }
-#mapStatus{
-    font-size: 24px;
-    position: absolute;
-    top: 15px;
+#mapStatus {
+	font-size: 24px;
+	position: absolute;
+	top: 15px;
 	right: 15px;
-    display: flex;
-    justify-content: space-around;
-    width: 200px;
-    text-align: center;
-    transition: ease-in-out 500ms;
+	display: flex;
+	justify-content: space-around;
+	width: 200px;
+	text-align: center;
+	transition: ease-in-out 500ms;
 }
-#hits{
-    font-size: 24px;
-    position: absolute;
-    bottom: 5px;
+#hits {
+	font-size: 24px;
+	position: absolute;
+	bottom: 5px;
 	right: 15px;
-    display: flex;
-    justify-content: space-around;
-    width: 200px;
-    text-align: center;
-    transition: ease-in-out 500ms;
+	display: flex;
+	justify-content: space-around;
+	width: 200px;
+	text-align: center;
+	transition: ease-in-out 500ms;
 }
-#hits hr{
-    height: 10px;
-    width: 50px;
-    border-radius: 5px;
-    border: none;
+#hits hr {
+	height: 10px;
+	width: 50px;
+	border-radius: 5px;
+	border: none;
 	margin-block-start: 0.1em;
-    margin-block-end: 0.1em;
+	margin-block-end: 0.1em;
 }
 .status {
-    #line-height: 4px;
-    width: calc(max-content + 100px);
+	#line-height: 4px;
+	width: calc(max-content + 100px);
 	width: 100%;
 	margin-left: 2px;
 	margin-right: 2px;
 	border-radius: 5px;
 }
-.h100 hr{
-    background-color: #51A347;
+.h100 hr {
+	background-color: #51a347;
 }
-.h50 hr{
-    background-color: #8B61FF;
+.h50 hr {
+	background-color: #8b61ff;
 }
-.h0 hr{
-    background-color: #FF5C5C;
+.h0 hr {
+	background-color: #ff5c5c;
 }
-#csCont{
-    background-color: #9C9236;
+#csCont {
+	background-color: #9c9236;
 }
-#arCont{
-    background-color: #4A9C36;
+#arCont {
+	background-color: #4a9c36;
 }
-#odCont{
-    background-color: #36849C;
+#odCont {
+	background-color: #36849c;
 }
-#hpCont{
-    background-color: #9C365B;
+#hpCont {
+	background-color: #9c365b;
 }
-.click{
-   animation: click 100ms 2;
-   animation-direction: alternate;
+.click {
+	animation: click 100ms 2;
+	animation-direction: alternate;
 }
-@keyframes click{
-   0%{
-       transform: scale(1);
-   }
-   100%{
-       transform: scale(0.9);
-   }
+@keyframes click {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0.9);
+	}
 }
-#rank{
-    font-size: 50px;
-    position: absolute;
-    bottom: 5px;
-	 right: 200px;
-    width: 100px;
-    margin-right: 40px;
-    margin-top: 60px;
-    display: flex;
-    justify-content: flex-end;
-    transition: ease-in-out 500ms;
+#rank {
+	font-size: 50px;
+	position: absolute;
+	bottom: 5px;
+	right: 200px;
+	width: 100px;
+	margin-right: 40px;
+	margin-top: 60px;
+	display: flex;
+	justify-content: flex-end;
+	transition: ease-in-out 500ms;
 }
