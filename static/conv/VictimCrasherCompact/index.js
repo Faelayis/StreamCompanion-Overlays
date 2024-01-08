@@ -98,8 +98,7 @@ socket.onmessage = (event) => {
 
 		if (gameState !== state) {
 			gameState = state;
-
-			if (!gameState || [1, 7, 11].includes(gameState)) {
+			if (!gameState || [1, 11].includes(gameState)) {
 				document.body.style.opacity = "0";
 				document.documentElement.style.opacity = "0";
 			} else {
@@ -114,7 +113,7 @@ socket.onmessage = (event) => {
 				ppCont.style.transform = "translateY(0)";
 				rank.style.transform = "translateY(0)";
 				hits.style.transform = "translateX(0)";
-			} else if ([5, 12, 13, 11, 14].includes(gameState)) {
+			} else if ([5, 7, 12, 13, 11, 14].includes(gameState)) {
 				maskTitleDiff.style.transform = "translateY(0px)";
 				mapStatus.style.transform = "translateY(20px)";
 				mapRank.style.transform = "translateY(0px)";
@@ -131,16 +130,28 @@ socket.onmessage = (event) => {
 			}
 		}
 
+		function updatePP(ppData) {
+			const currentPP = Number(new String(ppData)).toFixed();
+
+			if (currentPP.length <= 4 && gameState !== 2) {
+				pp.innerHTML = currentPP;
+				ppAbbreviate.innerHTML = "";
+			} else {
+				let ppDataLength = PPabbreviate(Math.round(ppData));
+				if (currentPP.length <= 5) {
+					pp.innerHTML = currentPP;
+					ppAbbreviate.innerHTML = "";
+				} else {
+					pp.innerHTML = ppDataLength[0];
+					ppAbbreviate.innerHTML = ppDataLength[1];
+				}
+			}
+		}
+
 		if (gameplay.pp.current != "") {
-			let ppData = gameplay.hits.grade.current ? gameplay.pp.current : menu.pp["100"];
-			let ppDataLength = PPabbreviate(Math.round(ppData));
-			pp.innerHTML = ppDataLength[0];
-			ppAbbreviate.innerHTML = ppDataLength[1];
+			updatePP(gameplay.hits.grade.current ? gameplay.pp.current : menu.pp["100"]);
 		} else if (menu.pp["100"]) {
-			let ppData = menu.pp["100"];
-			let ppDataLength = PPabbreviate(Math.round(ppData));
-			pp.innerHTML = ppDataLength[0];
-			ppAbbreviate.innerHTML = ppDataLength[1];
+			updatePP(menu.pp["100"]);
 		} else {
 			pp.innerHTML = "";
 			ppAbbreviate.innerHTML = "";
