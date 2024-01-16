@@ -119,7 +119,7 @@ socket.onmessage = (event) => {
 	if (gameState !== state) {
 		gameState = state;
 
-		if (!gameState || [0, 1, 11].includes(gameState)) {
+		if (!gameState || [0, 1, 11, 15].includes(gameState)) {
 			document.body.style.opacity = "0";
 			document.documentElement.style.opacity = "0";
 		} else {
