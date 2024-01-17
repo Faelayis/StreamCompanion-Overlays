@@ -208,14 +208,18 @@ socket.onmessage = (event) => {
 		hp.innerHTML = `${Math.round(tempHp * 10) / 10}`;
 	}
 
-	const gameplayHits = Object.values(gameplay.hits).filter((value) => {
-			if (typeof value !== "number") return;
-			return value;
-		}),
+	const gameplayHits = Object.entries(gameplay.hits)
+			.filter(([key, value]) => {
+				if (key === "unstableRate") return;
+				if (value === 0) return;
+				return typeof value === "number";
+			})
+			.map(([key, value]) => value),
+		inGameplay = gameplayHits[0] !== undefined && gameplayHits[0] > 0,
 		gameplayPP = gameplay.pp.current,
 		menuPP = menu.pp["100"];
 
-	if (gameplay.score > 0 || gameplayHits[0]) {
+	if (inGameplay) {
 		updatePP(gameplayPP);
 	} else if (menuPP) {
 		updatePP(menuPP);
