@@ -15,6 +15,7 @@ const getElementById = (id) => document.getElementById(id),
 	miss = getElementById("h0"),
 	mapStatus = getElementById("mapStatus"),
 	mapRank = getElementById("mapRank"),
+	mapStarRating = getElementById("mapStarRating"),
 	maskTitleDiff = getElementById("maskTitleDiff"),
 	ppCont = getElementById("ppCont"),
 	ppAbbreviate = getElementById("ppAbbreviate"),
@@ -98,13 +99,27 @@ let hdfl,
 		mapRank: "",
 	};
 
+function getStarRating(rating) {
+	const [integerPart, decimalPart] = rating.toString().split("."),
+		fullStars = Math.floor(rating),
+		halfStar = decimalPart ? decimalPart.slice(0, 1) : 0;
+
+	let starsHTML = '⭐'.repeat(fullStars);
+	if (halfStar) {
+		starsHTML += '<span class="half-star">⭐</span>'.repeat(halfStar);
+	}
+
+	return starsHTML;
+}
+
+
 socket.onmessage = (event) => {
 	const data = event.data,
 		{ menu, gameplay } = data,
 		{ bm, mods, state } = menu,
 		{ path, metadata, stats, rankedStatus } = bm,
 		{ artist, title: songTitle, difficulty } = metadata,
-		{ CS, AR, OD, HP } = stats;
+		{ CS, AR, OD, HP, SR, fullSR } = stats;
 
 	if (tempImg !== path.full) {
 		tempImg = path.full;
@@ -131,6 +146,7 @@ socket.onmessage = (event) => {
 			maskTitleDiff.style.transform = "translateY(0)";
 			mapStatus.style.transform = "translateY(0)";
 			mapRank.style.transform = "translateY(0)";
+			mapStarRating.style.transform = "translateY(0)";
 			ppCont.style.transform = "translateY(0)";
 			rank.style.transform = "translateY(0)";
 			hits.style.transform = "translateX(0)";
@@ -138,6 +154,7 @@ socket.onmessage = (event) => {
 			maskTitleDiff.style.transform = "translateY(0px)";
 			mapStatus.style.transform = "translateY(20px)";
 			mapRank.style.transform = "translateY(0px)";
+			mapStarRating.style.transform = "translateY(0)";
 			ppCont.style.transform = "translateY(0px)";
 			rank.style.transform = "translateY(100px)";
 			hits.style.transform = "translateY(100px)";
@@ -145,6 +162,7 @@ socket.onmessage = (event) => {
 			maskTitleDiff.style.transform = "translateY(20px)";
 			mapStatus.style.transform = "translateY(20px)";
 			mapRank.style.transform = "translateY(0px)";
+			mapStarRating.style.transform = "translateY(0)";
 			ppCont.style.transform = "translateY(100px)";
 			rank.style.transform = "translateY(100px)";
 			hits.style.transform = "translateY(100px)";
@@ -220,8 +238,22 @@ socket.onmessage = (event) => {
 		menuPP = menu.pp["100"];
 
 	if (inGameplay) {
+		if (mapStarRating.innerHTML != getStarRating(SR)) {
+			mapStarRating.innerHTML = getStarRating(SR);
+			mapStarRating.classList.remove("click");
+			reflow(mapStarRating);
+			mapStarRating.classList.add("click");
+		}
+		document.getElementById('mapStarRating').innerHTML = getStarRating(SR);
 		updatePP(gameplayPP);
 	} else if (menuPP) {
+		if (mapStarRating.innerHTML != getStarRating(fullSR)) {
+			mapStarRating.innerHTML = getStarRating(fullSR);
+			mapStarRating.classList.remove("click");
+			reflow(mapStarRating);
+			mapStarRating.classList.add("click");
+		}
+		document.getElementById('mapStarRating').innerHTML = getStarRating(fullSR);
 		updatePP(menuPP);
 	} else {
 		pp.innerHTML = "";
